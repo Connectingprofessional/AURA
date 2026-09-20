@@ -207,7 +207,7 @@ function callAnthropic({ system, message }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   const model = process.env.AURA_MODEL;
   if (!apiKey || !model || model.startsWith("replace-with")) {
-    return Promise.reject(new Error("AI is not configured. Add ANTHROPIC_API_KEY and AURA_MODEL to .env, then restart AU-RA."));
+    return Promise.reject(new Error("AI is not configured. Add ANTHROPIC_API_KEY and AURA_MODEL to .env, then restart AURA."));
   }
   const body = JSON.stringify({ model, max_tokens: 900, system, messages: [{ role: "user", content: message }] });
   return new Promise((resolve, reject) => {
@@ -236,7 +236,7 @@ function callAnthropic({ system, message }) {
           const answer = (parsed.content || []).filter((block) => block.type === "text").map((block) => block.text).join("\n").trim();
           resolve(answer || "I could not produce an answer from that page.");
         } catch {
-          reject(new Error("AU-RA could not read the AI response."));
+          reject(new Error("AURA could not read the AI response."));
         }
       });
     });
@@ -302,7 +302,7 @@ function registerIpc() {
     if (!text.trim()) return { ok: false, error: "This page has no readable text yet." };
     try {
       const answer = await callAnthropic({
-        system: "You are AU-RA, a browser assistant. Answer concisely using only the supplied page text. Clearly say when the page does not contain the answer. You cannot take actions in the browser.",
+        system: "You are AURA, a browser assistant. Answer concisely using only the supplied page text. Clearly say when the page does not contain the answer. You cannot take actions in the browser.",
         message: `Page title: ${tab.title}\nPage URL: ${tab.webContents.getURL()}\n\nPage text:\n---\n${text}\n---\n\nRequest: ${String(question || "").slice(0, 2000)}`
       });
       return { ok: true, answer };
@@ -316,7 +316,7 @@ function registerIpc() {
     const sections = await Promise.all(sourceTabs.map(async (tab, index) => `Tab ${index + 1}: ${tab.title}\n${tab.webContents.getURL()}\n---\n${(await pageText(tab)).slice(0, MAX_COMPARE_CHARS_PER_TAB)}`));
     try {
       const answer = await callAnthropic({
-        system: "You are AU-RA, a browser assistant. Compare the supplied tabs using only their page text. State when details are missing. You cannot take actions in the browser.",
+        system: "You are AURA, a browser assistant. Compare the supplied tabs using only their page text. State when details are missing. You cannot take actions in the browser.",
         message: `${sections.join("\n\n====\n\n")}\n\nRequest: ${String(question || "Compare these tabs.").slice(0, 2000)}`
       });
       return { ok: true, answer };
@@ -332,7 +332,7 @@ function createWindow() {
     height: 920,
     minWidth: 900,
     minHeight: 620,
-    title: "AU-RA",
+    title: "AURA",
     backgroundColor: "#0b1020",
     webPreferences: { preload: path.join(__dirname, "preload.js"), contextIsolation: true, nodeIntegration: false, sandbox: true, webSecurity: true }
   });
