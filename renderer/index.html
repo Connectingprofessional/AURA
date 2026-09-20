@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'none';" />
+    <title>AURA</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="titlebar">
+        <div class="brand"><span class="aura-mark" aria-hidden="true"><i></i></span><span>AURA</span><small>private by default</small></div>
+        <div class="privacy-note">Page content stays local unless you ask AURA.</div>
+      </header>
+      <section class="tabstrip" aria-label="Tabs"><div id="tabs" class="tabs"></div><button id="new-tab" class="icon-button" title="New tab" aria-label="New tab">+</button></section>
+      <section class="toolbar" aria-label="Browser controls">
+        <div class="nav-buttons"><button id="back" class="icon-button" title="Back" aria-label="Back">←</button><button id="forward" class="icon-button" title="Forward" aria-label="Forward">→</button><button id="reload" class="icon-button" title="Reload" aria-label="Reload">↻</button></div>
+        <form id="address-form" class="address-form"><span class="lock" aria-hidden="true">◈</span><input id="address" type="text" placeholder="Search or enter a URL" autocomplete="off" spellcheck="false" /><button id="bookmark" class="icon-button bookmark" type="button" title="Save bookmark" aria-label="Save bookmark">☆</button></form>
+        <button id="bookmarks" class="quiet-button" type="button">Bookmarks</button>
+        <button id="apps" class="icon-button apps-button" type="button" title="AURA apps" aria-label="AURA apps">⠿</button>
+        <button id="private-tab" class="quiet-button private-button" type="button">Private</button>
+        <button id="ask-aura" class="aura-button" type="button"><span>✦</span> Ask AURA</button><button id="profile-trigger" class="profile-trigger" type="button" title="AURA profile" aria-label="AURA profile">A</button>
+      </section>
+      <section class="content-shell">
+        <div id="page-stage" class="page-stage" aria-label="Web page display">
+          <section id="home-page" class="home-page">
+            <div class="home-topline"><span class="home-status"><i></i> AURA is ready</span><span id="home-date" class="home-date"></span></div>
+            <div class="hero-copy"><div class="hero-mark"><span></span></div><p class="hero-kicker">YOUR CALMER WAY TO EXPLORE</p><h1>Find your next <em>spark.</em></h1><p class="hero-subtitle">Search the web, collect what matters, and keep your context close.</p></div>
+            <form id="home-search-form" class="home-search"><span class="search-glyph">⌕</span><input id="home-search" type="text" placeholder="What would you like to explore?" autocomplete="off" /><button type="submit">Search <span>↗</span></button></form>
+            <div class="home-suggestions"><span>Try</span><button type="button" data-search="Creative portfolio ideas">Creative portfolio ideas</button><button type="button" data-search="Plan a weekend escape">Plan a weekend escape</button><button type="button" data-search="Learn something new">Learn something new</button></div>
+            <div class="home-lower"><section class="collection-card"><div class="card-label"><span>◆</span> YOUR SPACE</div><h2>Start with intent.</h2><p>Bookmark a page or ask AURA a question when you're ready.</p><div class="card-rule"></div><small>Nothing is remembered without your action.</small></section><section class="shortcuts"><button class="shortcut" data-action="amail"><span class="shortcut-icon amail">✉</span><strong>AMail</strong><small>Account</small></button><button class="shortcut" data-action="vtrol"><span class="shortcut-icon vtrol">▶</span><strong>Vtrol</strong><small>Watch</small></button><button class="shortcut" data-action="avision"><span class="shortcut-icon avision">✦</span><strong>Avision</strong><small>Think</small></button><button class="shortcut" data-action="satellite"><span class="shortcut-icon satellite">◉</span><strong>Satellite</strong><small>Maps</small></button></section></div>
+          </section>
+        </div>
+        <aside id="bookmark-panel" class="bookmark-panel is-hidden" aria-label="Bookmarks"><div class="panel-heading"><strong>Saved places</strong><button id="close-bookmarks" class="icon-button" aria-label="Close bookmarks">×</button></div><div id="bookmark-list" class="bookmark-list"></div></aside>
+        <aside id="apps-panel" class="apps-panel is-hidden" aria-label="AURA apps"><div class="panel-heading"><strong>AURA apps</strong><button id="close-apps" class="icon-button" aria-label="Close AURA apps">×</button></div><div class="apps-grid"><button class="app-launch" data-action="asearch"><span class="app-icon asearch">A</span><b>ASearch</b><small>Explore</small></button><button class="app-launch" data-action="amail"><span class="app-icon amail">✉</span><b>AMail</b><small>Account</small></button><button class="app-launch" data-action="vtrol"><span class="app-icon vtrol">▶</span><b>Vtrol</b><small>Watch</small></button><button class="app-launch" data-action="avision"><span class="app-icon avision">✦</span><b>Avision</b><small>Think</small></button><button class="app-launch" data-action="satellite"><span class="app-icon satellite">◉</span><b>Satellite</b><small>Maps</small></button><button class="app-launch" data-action="calendar"><span class="app-icon calendar">▣</span><b>Calendar</b><small>Plan</small></button><button class="app-launch" data-action="vmeet"><span class="app-icon vmeet">◌</span><b>VMeet</b><small>Meet</small></button><button class="app-launch" data-action="vchat"><span class="app-icon vchat">◐</span><b>VChat</b><small>Chat</small></button></div></aside>
+        <aside id="assistant-panel" class="assistant-panel is-collapsed" aria-label="Ask AURA">
+          <div class="assistant-heading"><div><span class="eyebrow">CONTEXTUAL ASSISTANT</span><h1>Ask AURA</h1></div><button id="close-assistant" class="icon-button" aria-label="Close AURA">×</button></div>
+          <div id="chat" class="chat"><div class="welcome-message"><span class="spark">✦</span><p>Ask about this page, or compare the tabs you have open. Nothing is sent to AI until you choose an action.</p></div></div>
+          <div class="quick-actions"><button data-prompt="Summarize this page in three concise bullet points.">Summarize</button><button data-prompt="What are the key facts, dates, and numbers on this page?">Key facts</button><button id="compare-tabs" data-mode="compare">Compare tabs</button></div>
+          <form id="ask-form" class="ask-form"><input id="ask-input" type="text" placeholder="Ask about this page" autocomplete="off" /><button type="submit" aria-label="Send question">↑</button></form>
+        </aside>
+      </section>
+      <div id="toast" class="toast" role="status"></div>
+      <section id="profile-modal" class="profile-modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="profile-title"><form id="profile-form" class="profile-card"><button id="close-profile" class="icon-button profile-close" type="button" aria-label="Close profile">×</button><span class="profile-orbit"><i></i></span><p class="eyebrow">AURA PROFILE</p><h2 id="profile-title">Make AURA yours.</h2><p>Create a local browser profile. AMail connection is ready for when your mail service is available.</p><label>Display name<input id="profile-name" required maxlength="48" placeholder="Your name" /></label><label>AMail address<input id="profile-email" type="email" required maxlength="120" placeholder="you@amail.example" /></label><button class="profile-submit" type="submit">Continue with AURA <span>→</span></button><small>This MVP stores this profile only on this device. It does not create or collect credentials for an email account.</small></form></section>
+      <section id="service-modal" class="profile-modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="service-title"><div class="profile-card service-card"><button id="close-service" class="icon-button profile-close" type="button" aria-label="Close service">×</button><span id="service-orbit" class="profile-orbit"><i></i></span><p id="service-kicker" class="eyebrow"></p><h2 id="service-title"></h2><p id="service-copy"></p><label id="service-field-wrap">Room or conversation name<input id="service-field" maxlength="80" placeholder="Name your space" /></label><button id="service-submit" class="profile-submit" type="button"></button><small id="service-note"></small></div></section>
+    </main>
+    <script src="renderer.js"></script>
+  </body>
+</html>

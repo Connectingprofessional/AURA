@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA | 3D Layout Hub</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Import Three.js Core and Add-ons from Unpkg CDN -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com",
+          "three/addons/": "https://unpkg.com"
+        }
+      }
+    </script>
 </head>
 <body>
     <div id="app-shell">
@@ -13,7 +22,7 @@
             <p>Interactive Workspace Environment</p>
         </header>
         <main class="stage-wrapper">
-            <!-- Target canvas element for 3D/WebGL engine assets -->
+            <!-- Target container canvas layout for 3D engine scene assets -->
             <div id="canvas-3d-stage"></div>
         </main>
     </div>

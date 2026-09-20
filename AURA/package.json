@@ -1,0 +1,17 @@
+{
+  "name": "aura-browser",
+  "version": "0.1.0",
+  "description": "AURA is a local-first AI browser MVP.",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check main.js && node --check preload.js && node --check renderer/renderer.js"
+  },
+  "devDependencies": {
+    "electron": "^44.4.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
